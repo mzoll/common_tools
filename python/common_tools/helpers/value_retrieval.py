@@ -7,42 +7,6 @@ Created on Mar 16, 2018
 import math
 import datetime as dt
 
-def RetrieveValue(where, varName,
-                  default = None, 
-                  forceType = None):
-    '''
-    Retrieve variable from list
-
-    Safe function for retrieving variables from a list. For use in real
-    time processing to avoid errors in case of missing variables or variables
-    with the wrong type.
-    
-    Parameters
-    ----------
-    where : list
-        A containing one or more named values
-    varName : str
-        The name of the value to extract from the list
-    default : obj
-        A value to default to if the variable did not exist or did not have the correct type and could not be converted
-        (default: None)
-    forceType : str
-        string specifying a type to convert the value to if it doesn't already have that type (default: None)
-        
-    Returns
-    -------
-    The value of the specified variable, if it exists and can be handled as the correct type. Otherwise the default value
-    '''
-    if varName not in where.keys():
-        return(default)
-  
-    value = where[varName]
-    # If the result set is a vector or list, no rules apply
-    if forceType is None or forceType == 'none':
-        return value
-    return ExpectValue(value, default=default, forceType=forceType)
-
-
 def ExpectValue(value,
                 default = None, 
                 forceType = None):
@@ -111,3 +75,39 @@ def ExpectValue(value,
     except:
         return default
     return value
+
+
+def RetrieveValue(where, varName,
+                  default = None, 
+                  forceType = None):
+    '''
+    Retrieve variable from list
+
+    Safe function for retrieving variables from a list. For use in real
+    time processing to avoid errors in case of missing variables or variables
+    with the wrong type.
+    
+    Parameters
+    ----------
+    where : list
+        A containing one or more named values
+    varName : str
+        The name of the value to extract from the list
+    default : obj
+        A value to default to if the variable did not exist or did not have the correct type and could not be converted
+        (default: None)
+    forceType : str
+        string specifying a type to convert the value to if it doesn't already have that type (default: None)
+        
+    Returns
+    -------
+    The value of the specified variable, if it exists and can be handled as the correct type. Otherwise the default value
+    '''
+    if varName not in where.keys():
+        return(default)
+  
+    value = where[varName]
+    # If the result set is a vector or list, no rules apply
+    if forceType is None or forceType == 'none':
+        return value
+    return ExpectValue(value, default=default, forceType=forceType)

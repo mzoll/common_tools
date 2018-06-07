@@ -5,6 +5,14 @@ Created on Mar 14, 2018
 '''
 
 
+""" '
+=== OBSOLETE ===
+use
+import pprint
+pp = pprint.PrettyPrinter(indent=4)
+pp.pprint( {'example': {'dict': True} } )
+"""
+
 def pprint_dict(d):
     """ pretty print a dictionary """
     print( '{ '+',\n'.join([ k+': '+str(v) for k,v in d.items() ] )+' }')
