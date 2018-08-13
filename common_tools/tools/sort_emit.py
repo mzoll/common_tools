@@ -7,9 +7,35 @@ Created on Mar 16, 2018
 def topoSort_gen(clist,
             attrib_lambda = lambda e: e.name,
             deplist_lambda = lambda e: e.dep):
-    """
-    From a list of elements with attribute and an dependency, generate a hierarchy sorted list
-    the dependencies of later emitted elements are met through the previously emitted 
+    """ (Generator) Topologically sort a list of elements for their inner dependencies.
+    From a list of elements with attributed name and dependency, generate a hierarchy sorted list where
+    the dependencies of later emitted elements are met through the previously emitted
+    
+    Parameters
+    ----------
+    clist : list of objects
+        some list of objects in which each elements has a defined name and dependency to other elements in the list
+    attrib_lambda : lambda function
+        a function applied to each element of the list returning its name
+    deplist : lambda function
+        a function applied to each element of the list returning a list of names of other elements that this element itself is dependent of
+        
+    Returns
+    -------
+    topologically sorted list where the elements' dependency is met by the previously emitted elements
+    
+    Example
+    -------
+    ```
+        class A:
+            name = 'A'
+            dep = []
+        class B:
+            name = 'B'
+            dep = ['A']
+        list( topoSort_gen([B(),A()]) )
+        >>> [class A, class B]
+    ```
     """
     provided = set()
     while clist:

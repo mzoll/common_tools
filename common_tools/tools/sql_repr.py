@@ -25,8 +25,5 @@ def sql_repr(val):
         if isinstance(val, pd.Timestamp):
             return squote(str(val))
         return squote(val.isoformat(sep=' ', timespec='milliseconds'))
-        #except:
-        #    print('die',type(val))
     else:
         return squote(json.dumps(val, cls=JSON_Encoder))
-    

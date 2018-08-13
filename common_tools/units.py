@@ -56,9 +56,9 @@ class units:
     class abstract:
         money = 1.
     class money:
-        kronor = 1.
+        Kronor = 1.
         SEK = 1.
-        dollar = 1.
+        Dollar = 1.
         USD = 1.
         Euro = 1.
         EUR = 1.
@@ -66,6 +66,7 @@ class units:
         time = 'seconds'
         distance = 'meters'
         weight = 'kilogram'
+        
         
 def impl(value):
     """ gotten an implict unit value: multiply with this to just mark this variable as explicit unit dependent

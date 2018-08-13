@@ -10,7 +10,7 @@ import datetime as dt
 def ExpectValue(value,
                 default = None, 
                 forceType = None):
-    """ try to obtain a certain object-type from a provided value, if something goes wrong fall back to a provided result 
+    """ try to obtain a certain object-type from a provided value, if something goes wrong fall back to a provided default 
     
     Parameters
     ----------
@@ -36,7 +36,7 @@ def ExpectValue(value,
         else:
             return default
 
-    # now switch cases for forceType for numeric
+    # now switch cases if forceType is numeric
     if forceType in ['numeric', 'float', 'double','int','integer', 'posint','positiveinteger']:        
         try:
             if forceType in ['numeric', 'float', 'double']:        
@@ -80,19 +80,14 @@ def ExpectValue(value,
 def RetrieveValue(where, varName,
                   default = None, 
                   forceType = None):
-    '''
-    Retrieve variable from list
+    ''' Retrieve variable from a dictionary with type enforcement and fallback
 
-    Safe function for retrieving variables from a list. For use in real
-    time processing to avoid errors in case of missing variables or variables
-    with the wrong type.
-    
     Parameters
     ----------
-    where : list
-        A containing one or more named values
+    where : dict
+        A dictionary that is inspected for the variable
     varName : str
-        The name of the value to extract from the list
+        The name of the value to extract
     default : obj
         A value to default to if the variable did not exist or did not have the correct type and could not be converted
         (default: None)

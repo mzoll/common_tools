@@ -13,6 +13,7 @@ logger = logging.getLogger('Stopwatch')
 
 class Stopwatch(object):
     """ Stop the execution of a certain block of code
+    
     Parameters
     ----------
     callobj : callable

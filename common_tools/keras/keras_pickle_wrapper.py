@@ -1,5 +1,13 @@
 """Provides KerasPickleWrapper, a class which can wrap a keras model, allowing
 it to be pickled.
+
+Us it the following way:
+```
+    mpickle = KerasPickleWrapper(keras.Model(...))
+    mpickle().fit(...)
+    result = mpickle().predict(...)
+    mpickle.unload() #optionally unloading the model-data from memory
+```
 """
 
 import keras

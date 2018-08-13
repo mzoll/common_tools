@@ -7,12 +7,17 @@ Created on Mar 16, 2018
 
 def GenEqualGroups(length, ngroups):
     ''' Generate a list of integers in a grouped sequence
+    
     Parameters
     ----------
     length : int >0
         length of the generated series
     ngroups : int (0 ... length)
         number of groups to be generated
+    
+    Returns
+    -------
+    vector of groups with size length
     
     Examples
     --------
@@ -35,10 +40,26 @@ def GenEqualGroups(length, ngroups):
 
 def GenStrategicGroups(stratify, ngroups):
     ''' Generate a list of integers in a grouped sequence, 
-    where grouped levels in stratifiy are not preserved.
+    where levels in stratifiy by the same name end up in the same group.
     
-    notice that stratify needs to be en-block
-    '''
+    Parameters
+    ----------
+    stratify : np.array
+        a series of n levels, where same levels are en-block, i.e. [0,0,0,1,1,2,2,2,2 ...]
+    ngroups : int (0 ... n)
+        number of groups to be generated
+    
+    Returns
+    -------
+    vector or groups with same length as stratify
+    
+    Examples
+    --------
+    ```
+    GenStartegicGroups(np.array([0,0,0,1,1,1,2,2,2,2,3]), 2)
+    >>> [0,0,0,0,0,0,1,1,1,1,1]
+    ```
+    '''    
     g = []
     nelpg = float(len(stratify)) / ngroups
     

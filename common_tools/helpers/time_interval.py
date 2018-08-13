@@ -9,7 +9,7 @@ import datetime as dt
 from common_tools.units import units
 
 def GetOffsetTimeInterval(dtime, offset= 0*units.time.seconds):
-    '''return TrainingInterval tuple(startDate, endDate) of dtime(sec) extend and with offset(sec) from now/today
+    '''return TrainingInterval tuple(startDate, endDate) of dtime(sec) duration and with offset(sec) from current time
     
     Parameters
     ----------
@@ -27,12 +27,12 @@ def GetOffsetTimeInterval(dtime, offset= 0*units.time.seconds):
             todaysDate - dt.timedelta(seconds= (offset)))
 
 
-def GetSpecificTimeInterval(date, offset = 0*units.time.seconds):
-    '''return TrainingInterval touple(startDate, endDate) extending nDays(pos or neg) from date
+def GetSpecificTimeInterval(startdate, offset = 0*units.time.seconds):
+    ''' return TimeInterval as touple(startDate, endDate)  extending nDays (pos or neg) from date
     
     Parameters
     ----------
-    date : datetime.datetime
+    startdate : datetime.datetime
         the date to relatively compute the other date to
     offset : float
         extend of the interval in seconds
@@ -41,11 +41,10 @@ def GetSpecificTimeInterval(date, offset = 0*units.time.seconds):
     -------
     tuple of shape(2,) with (date_early, date_late)
     '''
-    if date is None:
-        print('Debug', "Fallback to GetOffsetTimeInterval")
+    if startdate is None:
         return GetOffsetTimeInterval(abs(offset))
     if offset >= 0:
-        return (date, date + dt.timedelta(seconds=offset))
+        return (startdate, startdate + dt.timedelta(seconds=offset))
     else:
-        return (date - dt.timedelta(seconds=offset), date)
+        return (startdate - dt.timedelta(seconds=offset), startdate)
 
