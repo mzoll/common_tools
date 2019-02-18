@@ -40,6 +40,6 @@ def credkey(cred_name, key, value=None, export=True):
     if value is not None:
         if export:
             os.environ[cred_key] = value
-         return value
+        return value
 
     raise Exception("Credential lookup failed")
