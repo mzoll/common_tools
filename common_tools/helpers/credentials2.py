@@ -21,25 +21,29 @@ def credkey(cred_name, key, value=None, export=True):
         optional : provide the value directly (not recommended)
     """
     cred_key = (cred_name+'_'+key).upper()
+    # if value is provided
     if value is not None:
         if export:
-            os.environ[cred_key] = value
+            os.environ[cred_key] = str(value)
         return value
 
+    # try to retrieve from environment
     value = os.environ.get(cred_key)
     if value is not None:
         return value
 
+    # try to retrieve from keyring
     value = keyring.get_password(cred_name, key)
     if value is not None:
         if export:
-            os.environ[cred_key] = value
+            os.environ[cred_key] = str(value)
         return value
 
-    value = input("enter value for {}:{}".format(cred_name, key))
+    #try to retrieve from user by input
+    value = input("enter value for {}:{} :".format(cred_name, key))
     if value is not None:
         if export:
-            os.environ[cred_key] = value
+            os.environ[cred_key] = str(value)
         return value
 
     raise Exception("Credential lookup failed")
