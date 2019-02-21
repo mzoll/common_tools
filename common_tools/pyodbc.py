@@ -4,7 +4,7 @@ Created on Feb 15, 2019
 @author: marcel.zoll
 """
 
-class PyodbcCredentials(object):
+class PyodbcConnectionParameters(object):
     def __init__(self, dsn, db, uid, pwd=None):
         self.dsn = dsn
         self.db = db
